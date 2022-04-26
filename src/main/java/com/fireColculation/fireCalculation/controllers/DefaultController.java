@@ -14,4 +14,14 @@ public class DefaultController {
     public String health() {
         return "health";
     }
+
+    @GetMapping("")
+    public String mainPage() {
+        return "main";
+    }
+
+    @GetMapping("/inputform")
+    public String calulateData() {
+        return "inputForm";
+    }
 }
