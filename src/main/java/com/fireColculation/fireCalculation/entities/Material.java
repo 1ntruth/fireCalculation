@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 public class Material {
 
     private String name;
-    private Double heatConduction;
+    private Double heatValue;
     private Long weight;
     private Long square;
 

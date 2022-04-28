@@ -25,4 +25,7 @@ public class CalculationParams {
     private Long rangeToLoadSurface;
 
 
+    public Long methodCalculate(Material materials, Long fireLoadSquare){
+        return 1232L;
+    }
 }

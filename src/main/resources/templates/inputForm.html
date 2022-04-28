@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:with="lang=${#locale.language}"
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      th:with="lang=${#locale.language}"
       th:lang="${lang}">
 <head th:fragment="htmlhead">
     <meta charset="utf-8">
@@ -18,9 +19,9 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
-                <li class="nav-item" ><a class="nav-link" th:href="@{/inputform}">Калькулятор 1</a></li>
-                <li class="nav-item" ><a class="nav-link" th:href="@{/}">Калькулятор 2</a></li>
-                <li class="nav-item" ><a class="nav-link" th:href="@{/}">Калькулятор 3</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/inputform}">Калькулятор 1</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Калькулятор 2</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Калькулятор 3</a></li>
                 <a type="button" th:href="@{/}" class="btn btn-outline-light">На главную</a>
                 </li>
             </ul>
@@ -39,17 +40,30 @@
 </div>
 
 
-<form autocomplete="off" action="/action_page.php">
-    <p>
-    <h5>
-    <div class=class="container">
-        <li class="autocomplete" style="width:300px;"><input id="materialName" type="text" name="materialName" placeholder="Материал"></li>
-        <li class="autocomplete" style="width:300px;"><input id="heatConduction" type="text" name="heatConduction" placeholder="Теплопроводность"></li>
-        <li class="autocomplete" style="width:300px;"><input id="weight" type="text" name="weight" placeholder="Вес"></li>
-        <li class="autocomplete" style="width:300px;"><input id="square" type="text" name="square" placeholder="Площадь"></li>
-    </div>
-    </h5>
-    </p>
+<form th:action="@{/health}" method="post">
+    <select class="form-control-left" id="materials.firstName" name="firstName">>
+        <option th:each="materialName : ${materials}"
+                th:value="${materialName}"
+                th:text="${materialName}">
+        </option>
+    </select>
+    <p></p>
+    <select class="form-control-left" id="materials.secondName" name="secondName">>
+        <option th:each="materialName : ${materials}"
+                th:value="${materialName}"
+                th:text="${materialName}">
+        </option>
+    </select>
+    <p></p>
+    <select class="form-control-left" id="materials.thirdName" name="thirdName">>
+        <option th:each="materialName : ${materials}"
+                th:value="${materialName}"
+                th:text="${materialName}">
+        </option>
+    </select>
+    <p></p>
+
+    <button type="submit" class="btn btn-secondary bg-secondary text-white">Получить Расчет</button>
 </form>
 
 </body>
