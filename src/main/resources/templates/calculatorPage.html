@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:with="lang=${#locale.language}"
+      th:lang="${lang}">
+<head th:fragment="htmlhead">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link type="Image/x-icon" href="images/calculatorIcon.png" rel="icon">
+  <title>Gutev & Co</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<nav th:fragment="navigation" class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <div class="container">
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+        <li class="nav-item" ><a class="nav-link" th:href="@{/calculatorPage}">Калькулятор 1</a></li>
+        <li class="nav-item" ><a class="nav-link" th:href="@{/calculatorPage}">Калькулятор 2</a></li>
+        <li class="nav-item" ><a class="nav-link" th:href="@{/calculatorPage}">Калькулятор 3</a></li>
+          <a type="button" th:href="@{/}" class="btn btn-outline-light">На главную</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h1 class="mt-5">Это форма для калькуляторов</h1>
+      <p class="lead">Описание что он рассчитывает</p>
+      <ul class="list-unstyled">
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-center">
+      <a type="button" th:href="@{/inputform}" class="btn btn-secondary bg-secondary text-white">Перейти к Расчету</a>
+    </div>
+  </div>
+</div>
+
+
+
+<th:block th:fragment="footer">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script th:src="@{/js/its.js}"></script>
+</th:block>
+</body>
+</html>
