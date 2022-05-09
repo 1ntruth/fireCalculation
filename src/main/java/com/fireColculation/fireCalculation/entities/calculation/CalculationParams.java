@@ -1,7 +1,14 @@
-package com.fireColculation.fireCalculation.entities;
+package com.fireColculation.fireCalculation.entities.calculation;
 
+import com.fireColculation.fireCalculation.entities.Material;
+import com.fireColculation.fireCalculation.entities.Room;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -9,15 +16,17 @@ import java.util.List;
  * Класс-сущность, принимающая основные параметры расчета
  */
 @Getter
-@RequiredArgsConstructor
+@Setter
+@Component
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CalculationParams {
 
-    private List<Material> materials;
-
     /**
-     * Площадь размещения пожарной нагрузки общая
+     * Параметры помещения
      */
-    private Long fireLoadSquare;
+    private Room room;
 
     /**
      * Расстояние от поверхности нагрузки до нижнего пояса ферм (балок) или перекрытия

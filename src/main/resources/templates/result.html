@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:with="lang=${#locale.language}"
+<html xmlns:th="http://www.thymeleaf.org" th:with="lang=${#locale.language}"
       th:lang="${lang}">
 <head th:fragment="htmlhead">
     <meta charset="utf-8">
@@ -28,12 +28,29 @@
     </div>
 </nav>
 <p>
-<div class="row">
-    <div class="col text-center">
-        <h5 type="text" >Все работает можем калькулировать</h5>
-        <h5 type="text" >Здесь мы получили деньги и предоставили расчет</h5>
+<form th:method="GET" th:action="@{/result}" th:object="${inputFormDto}">
+    <div class="row">
+        <div class="col text-center">
+            <h5 type="text" >Все работает можем калькулировать</h5>
+            <h5 type="text" >Здесь мы получили деньги и предоставили расчет</h5>
+            <h5 type="text" >С вот такими параметрами</h5>
+            <p>
+                <label>Материал :</label>
+            <label  th:text="${inputFormDto.material.name}"></label>
+            </p>
+           <p>
+               <label>Вес :</label>
+               <label  th:text="${inputFormDto.material.weight}"></label>
+           </p>
+            <p>
+                <label>Площадь Размещения :</label>
+            <label  th:text="${inputFormDto.material.square}"></label>
+            </p>
+        </div>
     </div>
-</div>
+
+</form>
+
 
 </p>
 </body>

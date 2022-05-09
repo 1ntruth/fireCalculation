@@ -2,52 +2,44 @@ package com.fireColculation.fireCalculation.controllers;
 
 import com.fireColculation.fireCalculation.constants.Materials;
 import com.fireColculation.fireCalculation.dto.InputFormDto;
+import com.fireColculation.fireCalculation.services.CalculatorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+
 
 @Slf4j
 @RequiredArgsConstructor
-@ComponentScan("/resource")
-@RestController
+@Controller
 public class DefaultController {
 
+    private final CalculatorService calculatorService;
+
     @PostMapping("/result")
-    public String health(
-            @ModelAttribute InputFormDto inputFormDto) {
-        System.out.println(inputFormDto.toString());
+    public String result(@ModelAttribute InputFormDto inputFormDto, Model model) {
+        model.addAttribute("inputFormDto", inputFormDto);
+        calculatorService.setCalculatorParamsFromDto(inputFormDto);
         return "result";
     }
 
     @GetMapping("")
-    @ResponseBody
     public String main() {
         return "main";
     }
 
-    @GetMapping("/calculatorForm")
+    @GetMapping("/calculatorPage")
     public String calculatorForm() {
         return "calculatorPage";
     }
 
     @GetMapping("/inputform")
-    public String calulateData(Model model, @ModelAttribute InputFormDto inputFormDto) {
-        model.addAttribute("materialNameList", Materials.getAllMaterialNameList());
+    public String calulateData(Model model) {
+        model.addAttribute("materials", Materials.getAllMaterials());
+        model.addAttribute("inputFormDto", InputFormDto.builder().build());
         return "inputForm";
     }
-
-    @GetMapping("/inputform/")
-    public String getMaterialsNameList(Model model) {
-        model.addAttribute("materials", Materials.getAllMaterialNameList());
-        return "calculatorPage";//заменить на форму итогового расчета
-    }
-
 }
