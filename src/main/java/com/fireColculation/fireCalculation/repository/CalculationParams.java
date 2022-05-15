@@ -1,4 +1,4 @@
-package com.fireColculation.fireCalculation.entities.calculation;
+package com.fireColculation.fireCalculation.repository;
 
 import com.fireColculation.fireCalculation.entities.Material;
 import com.fireColculation.fireCalculation.entities.Room;
@@ -8,7 +8,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -17,10 +19,10 @@ import java.util.List;
  */
 @Getter
 @Setter
-@Component
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Repository
 public class CalculationParams {
 
     /**
@@ -29,12 +31,7 @@ public class CalculationParams {
     private Room room;
 
     /**
-     * Расстояние от поверхности нагрузки до нижнего пояса ферм (балок) или перекрытия
+     * Список материалов
      */
-    private Long rangeToLoadSurface;
-
-
-    public Long methodCalculate(Material materials, Long fireLoadSquare){
-        return 1232L;
-    }
+    private List<Material> materials;
 }

@@ -14,15 +14,12 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
     <script>
         function isEmail() {
-            var str = document.getElementById("name1").value;
-            var status = document.getElementById("status");
-            var re = /^[^\s()<>@,;:\/]+@\w[\w\.-]+\.[a-z]{2,}$/i;
-            if (re.test(str)) status.innerHTML = "Адрес правильный";
-            else status.innerHTML = "Адрес неверный";
-            if(isEmpty(str)) status.innerHTML = "Поле пустое";
+            var materialName = document.getElementById("name1");
+            let materials = document.getElementById("materials");
+            var result = document.getElementsByName("square1").value = materials.get(materialName);
         }
         function isEmpty(str){
-            return (str == null) || (str.length == 0);
+            return ;
         }
     </script>
 </head>
@@ -32,10 +29,7 @@
     <div class="container">
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/calculatorPage}">Калькулятор 1</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/calculatorPage}">Калькулятор 2</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/calculatorPage}">Калькулятор 3</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/inputForm}">Калькулятор В1 - В4</a></li>
                 <a type="button" th:href="@{/}" class="btn btn-outline-light">На главную</a>
                 </li>
             </ul>
@@ -68,7 +62,7 @@
     <h6 style="margin-left: 650px">Введите площадь помещения</h6>
     <div class="input-group mb-3">
         <h8 style="margin-left: 470px">обязательное поле</h8>
-        <input type="number" step="any" min="0" style="margin-left: 40px" th:field="*{roomName}"></input>
+        <input type="number" step="any" min="0" style="margin-left: 40px" th:field="*{roomSquare}"></input>
         <h2><b>м²</b></h2>
     </div>
     <h6 style="margin-left: 650px">Введите высоту помещения</h6>
@@ -88,31 +82,29 @@
         <tr>
             <th><label style="margin-left: 80px">Материал</label></th>
             <th><label style="margin-left: 80px">Масса, кг</label></th>
-            <th><label style="margin-left: 80px">Q, МДж/кг</label></th>
-            <th><label style="margin-left: 80px">Q, МДж</label></th>
+<!--            <th><label style="margin-left: 80px">Q, МДж/кг</label></th>-->
+<!--            <th><label style="margin-left: 80px">Q, МДж</label></th>-->
 
         </tr>
         <tr>
             <div class="selected">
                 <th><select class="form-control" th:field="*{first.name}" id="name1" >
-                <option value="null"></option>
+                <option value="empty" ></option>
                 <option
                         th:each="name : ${materials.keySet()}"
                         th:value="${name}"
                         th:text="${name}">
                 </option>
             </select>
-<!--                <th><lable th:text="${materials.get()}"></lable></th>-->
-
             </th>
-            <th><input type="number" step="any" min="0" th:field="*{first.weight}" id="weight1"></input></th>
-            <th><input type="number" step="any" min="0" ></input></th>
-            <th><input type="number" step="any" min="0" th:field="*{first.square}" id="square1"></input></th>
+            <th><input type="number" step="any" min="0" th:field="*{first.weight}" id="weight1" ></input></th>
+<!--            <th><label ></label></th>-->
+<!--            <th><input type="number" step="any" min="0" th:field="*{first.resultHeatValue}" id="square1"></input></th>-->
             </div>
         </tr>
         <tr>
             <th><select class="form-control" th:field="*{second.name}" id="name2">
-                <option value="null" ></option>
+                <option value="empty" ></option>
                 <option
                         th:each="name : ${materials.keySet()}"
                         th:value="${name}"
@@ -121,12 +113,12 @@
             </select>
             </th>
             <th><input type="number" step="any" min="0" th:field="*{second.weight}" id="weight2"></input></th>
-            <th><input type="number" step="any" min="0"></input></th>
-            <th><input type="number" step="any" min="0" th:field="*{second.square}" id="square2"></input></th>
+<!--            <th><input type="number" step="any" min="0"></input></th>-->
+<!--            <th><input type="number" step="any" min="0" th:field="*{second.resultHeatValue}" id="square2"></input></th>-->
         </tr>
         <tr>
             <th><select class="form-control" th:field="*{third.name}" id="name3">
-                <option value="null"></option>
+                <option value="empty"></option>
                 <option
                         th:each="name : ${materials.keySet()}"
                         th:value="${name}"
@@ -135,12 +127,12 @@
             </select>
             </th>
             <th><input type="number" step="any" min="0"  th:field="*{third.weight}" id="weight3"></input></th>
-            <th><input type="number" step="any" min="0" ></input></th>
-            <th><input type="number" step="any" min="0" th:field="*{third.square}" id="square3"></input></th>
+<!--            <th><input type="number" step="any" min="0" ></input></th>-->
+<!--            <th><input type="number" step="any" min="0" th:field="*{third.resultHeatValue}" id="square3"></input></th>-->
         </tr>
         <tr>
             <th><select class="form-control" th:field="*{fourth.name}" id="name4">
-                <option value="null"></option>
+                <option value="empty"></option>
                 <option
                         th:each="name : ${materials.keySet()}"
                         th:value="${name}"
@@ -148,13 +140,13 @@
                 </option>
             </select>
             </th>
-            <th><input type="number" step="any" min="0" th:field="*{first.weight}" id="weight4"></input></th>
-            <th><input type="number" step="any" min="0"></input></th>
-            <th><input type="number" step="any" min="0" th:field="*{first.square}" id="square4"></input></th>
+            <th><input type="number" step="any" min="0" th:field="*{fourth.weight}" id="weight4"></input></th>
+<!--            <th><input type="number" step="any" min="0"></input></th>-->
+<!--            <th><input type="number" step="any" min="0" th:field="*{first.resultHeatValue}" id="square4"></input></th>-->
         </tr>
         <tr>
             <th><select class="form-control" th:field="*{fifth.name}" id="name5">
-                <option value="null"></option>
+                <option value="empty" ></option>
                 <option
                         th:each="name : ${materials.keySet()}"
                         th:value="${name}"
@@ -162,14 +154,14 @@
                 </option>
             </select>
             </th>
-            <th><input type="number" step="any" min="0" th:field="*{first.weight}" id="weight5"></input></th>
-            <th><input type="number" step="any" min="0"></input></th>
-            <th><input type="number" step="any" min="0" th:field="*{first.square}" id="square5"></input></th>
+            <th><input type="number" step="any" min="0" th:field="*{fifth.weight}" id="weight5"></input></th>
+<!--            <th><input type="number" step="any" min="0"></input></th>-->
+<!--            <th><input type="number" step="any" min="0" th:field="*{first.resultHeatValue}" id="square5"></input></th>-->
         </tr>
 
         <tr>
             <th><select class="form-control" th:field="*{sixth.name}" id="name6">
-                <option value="null"></option>
+                <option value="empty" ></option>
                 <option
                         th:each="name : ${materials.keySet()}"
                         th:value="${name}"
@@ -178,8 +170,8 @@
             </select>
             </th>
             <th><input type="number" step="any" min="0" th:field="*{sixth.weight}" id="weight6"></input></th>
-            <th><input type="number" step="any" min="0" ></input></th>
-            <th><input type="number" step="any" min="0" th:field="*{sixth.square}" id="square6"></input></th>
+<!--            <th><input type="number" step="any" min="0" ></input></th>-->
+<!--            <th><input type="number" step="any" min="0" th:field="*{sixth.resultHeatValue}" id="square6"></input></th>-->
         </tr>
     </table>
     <p style="margin-top: 30px">
